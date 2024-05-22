@@ -2,7 +2,8 @@
 #include<QGraphicsView>
 #include<QGraphicsScene>
 #include<QGraphicsRectItem>
-#include "personaje.h"
+//#include "personaje.h"
+#include "jugador.h"
 
 #include <QApplication>
 
@@ -15,16 +16,16 @@ int main(int argc, char *argv[])
     QGraphicsScene *escena = new QGraphicsScene();
 
     //creamos nuestroPersonaje principal
-    Personaje *personaje = new Personaje();
+    Jugador *jugador = new Jugador();
     //modificamos las propiedades de nuestro personaje
-    personaje->setRect(0,0,100,100);
+    jugador->setRect(0,0,100,100);
 
     //agregamos nuestro personaje a la escena
-    escena->addItem(personaje);
+    escena->addItem(jugador);
 
     //hacemos que nuestro personaje sea centrado o focusable para que ese objeto obtenga info de las teclas presionadas
-    personaje->setFlag(QGraphicsItem::ItemIsFocusable);
-    personaje->setFocus();
+    jugador->setFlag(QGraphicsItem::ItemIsFocusable);
+    jugador->setFocus();
 
 
     //creamos la vista
@@ -46,7 +47,7 @@ int main(int argc, char *argv[])
     escena->setSceneRect(0,0,1280,720);
 
     //Ahora acomodamos la posicion de nuestro jugador
-    personaje->setPos(100, view->height()-personaje->rect().height()-70);
+    jugador->setPos(100, view->height()-jugador->rect().height()-70);
 
     //todo: Implementar el movimiento parabolico para el salto del personaje
 

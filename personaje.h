@@ -6,11 +6,11 @@
 #include<QGraphicsRectItem>
 #include <QKeyEvent>
 
-
+//esta es la clase padre , esta clase va a heredar jugador y enemigos
 class Personaje : public QGraphicsRectItem{
 public:
     Personaje();
-    void keyPressEvent(QKeyEvent *event);
+    //void keyPressEvent(QKeyEvent *event);
 };
 
 #endif // PERSONAJE_H

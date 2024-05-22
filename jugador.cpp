@@ -1,21 +1,17 @@
-#include "personaje.h"
-#include <QDebug>
-//#include "bala.h"
+#include "jugador.h"
+#include "bala.h"
 #include <QGraphicsScene>
 
-Personaje::Personaje() {
+Jugador::Jugador() {}
 
-}
-
-/*
-void Personaje::keyPressEvent(QKeyEvent *event)
+void Jugador::keyPressEvent(QKeyEvent *event)
 {
     //qDebug() <<"acabas de presionar una tecla";
     if(event->key() == Qt::Key_Right){
         setPos(x()+10,y());
     }else if(event->key() == Qt::Key_Left){
         if(pos().x()>0){
-          setPos(x()-10,y());
+            setPos(x()-10,y());
         }
 
     }
@@ -32,4 +28,3 @@ void Personaje::keyPressEvent(QKeyEvent *event)
         scene()->addItem(bala);
     }
 }
-*/

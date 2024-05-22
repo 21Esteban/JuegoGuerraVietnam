@@ -1,8 +1,10 @@
 #ifndef ENEMIGO_H
 #define ENEMIGO_H
+#include "personaje.h"
 
-class Enemigo
-{
+//enemigo hereda cosas de Personaje
+
+class Enemigo :public Personaje{
 public:
     Enemigo();
 };

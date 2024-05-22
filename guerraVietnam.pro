@@ -11,12 +11,14 @@ CONFIG += c++17
 SOURCES += \
     bala.cpp \
     enemigo.cpp \
+    jugador.cpp \
     main.cpp \
     personaje.cpp
 
 HEADERS += \
     bala.h \
     enemigo.h \
+    jugador.h \
     personaje.h
 
 # Default rules for deployment.
