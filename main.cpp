@@ -2,9 +2,13 @@
 #include<QGraphicsView>
 #include<QGraphicsScene>
 #include<QGraphicsRectItem>
-#include "personaje.h"
-
+//#include "personaje.h"
+#include "player.h"
+#include <QTimer>
 #include <QApplication>
+#include<QObject>
+#include"player.h"
+
 
 int main(int argc, char *argv[])
 {
@@ -15,16 +19,16 @@ int main(int argc, char *argv[])
     QGraphicsScene *escena = new QGraphicsScene();
 
     //creamos nuestroPersonaje principal
-    Personaje *personaje = new Personaje();
+    Player *player = new Player();
     //modificamos las propiedades de nuestro personaje
-    personaje->setRect(0,0,100,100);
+    player->setRect(0,0,100,100);
 
     //agregamos nuestro personaje a la escena
-    escena->addItem(personaje);
+    escena->addItem(player);
 
     //hacemos que nuestro personaje sea centrado o focusable para que ese objeto obtenga info de las teclas presionadas
-    personaje->setFlag(QGraphicsItem::ItemIsFocusable);
-    personaje->setFocus();
+    player->setFlag(QGraphicsItem::ItemIsFocusable);
+    player->setFocus();
 
 
     //creamos la vista
@@ -45,10 +49,19 @@ int main(int argc, char *argv[])
     //acomodamos el centrado de la escena
     escena->setSceneRect(0,0,1280,720);
 
-    //Ahora acomodamos la posicion de nuestro jugador
-    personaje->setPos(100, view->height()-personaje->rect().height()-70);
+    //Ahora acomodamos la posicion de nuestro player
+    player->setPos(100, view->height()-player->rect().height()-150);
+
 
     //todo: Implementar el movimiento parabolico para el salto del personaje
+
+
+
+
+    //spawm enemigos
+    QTimer * timer = new QTimer();
+    QObject::connect(timer,SIGNAL(timeout()),player,SLOT(spawn()));
+    timer->start(2000);
 
     return a.exec();
 }

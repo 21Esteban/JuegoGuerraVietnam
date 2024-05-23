@@ -1,27 +1,30 @@
-#include "personaje.h"
-#include <QDebug>
-//#include "bala.h"
+#include "player.h"
+#include "bala.h"
 #include <QGraphicsScene>
+#include <QKeyEvent>
+#include "enemigo.h"
+#include <QDebug>
 
-Personaje::Personaje():QGraphicsRectItem() {
+Player::Player(QObject *parent)
+    : QObject{parent} , Personaje()
+{
 
 }
 
-/*
-void Personaje::keyPressEvent(QKeyEvent *event)
+void Player::keyPressEvent(QKeyEvent *event)
 {
     //qDebug() <<"acabas de presionar una tecla";
     if(event->key() == Qt::Key_Right){
         setPos(x()+10,y());
     }else if(event->key() == Qt::Key_Left){
         if(pos().x()>0){
-          setPos(x()-10,y());
+            setPos(x()-10,y());
         }
 
     }
-    else if(event->key() == Qt::Key_Down){
+    /* else if(event->key() == Qt::Key_Down){
         setPos(x(),y()+10);
-    }    else if(event->key() == Qt::Key_Up){
+    }  */  else if(event->key() == Qt::Key_Up){
         setPos(x(),y()-10);
     }else if(event->key() == Qt::Key_Space){
         //si se le da al espacio, quiero hacer un disparo.
@@ -32,4 +35,18 @@ void Personaje::keyPressEvent(QKeyEvent *event)
         scene()->addItem(bala);
     }
 }
-*/
+
+void Player::spawn()
+{
+
+    //creamos un enemigo
+
+    Enemigo *enemigo = new Enemigo();
+    //enemigo->setPos(1280,y()+70);
+    scene()->addItem(enemigo);
+    qDebug() <<"Enemigo añadido";
+
+
+
+}
+

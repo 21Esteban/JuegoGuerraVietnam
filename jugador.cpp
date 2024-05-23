@@ -1,27 +1,24 @@
-#include "personaje.h"
-#include <QDebug>
-//#include "bala.h"
+/*#include "jugador.h"
+#include "bala.h"
 #include <QGraphicsScene>
+#include <QKeyEvent>
 
-Personaje::Personaje():QGraphicsRectItem() {
+Jugador::Jugador() {}
 
-}
-
-/*
-void Personaje::keyPressEvent(QKeyEvent *event)
+void Jugador::keyPressEvent(QKeyEvent *event)
 {
     //qDebug() <<"acabas de presionar una tecla";
     if(event->key() == Qt::Key_Right){
         setPos(x()+10,y());
     }else if(event->key() == Qt::Key_Left){
         if(pos().x()>0){
-          setPos(x()-10,y());
+            setPos(x()-10,y());
         }
 
     }
     else if(event->key() == Qt::Key_Down){
         setPos(x(),y()+10);
-    }    else if(event->key() == Qt::Key_Up){
+    }   else if(event->key() == Qt::Key_Up){
         setPos(x(),y()-10);
     }else if(event->key() == Qt::Key_Space){
         //si se le da al espacio, quiero hacer un disparo.

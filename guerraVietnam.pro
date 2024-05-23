@@ -12,12 +12,16 @@ SOURCES += \
     bala.cpp \
     enemigo.cpp \
     main.cpp \
-    personaje.cpp
+    personaje.cpp \
+    player.cpp \
+    pruebaenemigo.cpp
 
 HEADERS += \
     bala.h \
     enemigo.h \
-    personaje.h
+    personaje.h \
+    player.h \
+    pruebaenemigo.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
