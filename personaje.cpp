@@ -3,7 +3,7 @@
 //#include "bala.h"
 #include <QGraphicsScene>
 
-Personaje::Personaje() {
+Personaje::Personaje():QGraphicsRectItem() {
 
 }
 

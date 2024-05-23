@@ -1,12 +1,19 @@
 #ifndef ENEMIGO_H
 #define ENEMIGO_H
+
+#include <QObject>
 #include "personaje.h"
 
-//enemigo hereda cosas de Personaje
-
-class Enemigo :public Personaje{
+class Enemigo :  public QObject , public Personaje
+{
+    Q_OBJECT
 public:
-    Enemigo();
+    explicit Enemigo(QObject *parent = nullptr);
+
+public slots:
+    void move();
+
+signals:
 };
 
 #endif // ENEMIGO_H

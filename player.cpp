@@ -1,11 +1,17 @@
-/*#include "jugador.h"
+#include "player.h"
 #include "bala.h"
 #include <QGraphicsScene>
 #include <QKeyEvent>
+#include "enemigo.h"
+#include <QDebug>
 
-Jugador::Jugador() {}
+Player::Player(QObject *parent)
+    : QObject{parent} , Personaje()
+{
 
-void Jugador::keyPressEvent(QKeyEvent *event)
+}
+
+void Player::keyPressEvent(QKeyEvent *event)
 {
     //qDebug() <<"acabas de presionar una tecla";
     if(event->key() == Qt::Key_Right){
@@ -16,9 +22,9 @@ void Jugador::keyPressEvent(QKeyEvent *event)
         }
 
     }
-    else if(event->key() == Qt::Key_Down){
+    /* else if(event->key() == Qt::Key_Down){
         setPos(x(),y()+10);
-    }   else if(event->key() == Qt::Key_Up){
+    }  */  else if(event->key() == Qt::Key_Up){
         setPos(x(),y()-10);
     }else if(event->key() == Qt::Key_Space){
         //si se le da al espacio, quiero hacer un disparo.
@@ -29,4 +35,18 @@ void Jugador::keyPressEvent(QKeyEvent *event)
         scene()->addItem(bala);
     }
 }
-*/
+
+void Player::spawn()
+{
+
+    //creamos un enemigo
+
+    Enemigo *enemigo = new Enemigo();
+    //enemigo->setPos(1280,y()+70);
+    scene()->addItem(enemigo);
+    qDebug() <<"Enemigo añadido";
+
+
+
+}
+
