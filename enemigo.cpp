@@ -1,16 +1,19 @@
 #include "enemigo.h"
 #include<QTimer>
 #include<QDebug>
+#include "game.h"
+
+extern Game * game;
 
 Enemigo::Enemigo(QObject *parent)
     :  QObject{parent}, Personaje()
 {
     //hacemos que el enemigo aparezca posicionado por la derecha y se mueva hacia la izquierda
 
-   // setPos(1280,y()+80);
+    setPos(1280,720-130);
 
     //CREAMOS EL DISEÑO DE EL ENEMIGO
-    setRect(1280,470,100,100);
+   setPixmap(QPixmap(":/imagenes/movimiento1SinFondo.png").scaled(100,100,Qt::KeepAspectRatio));
 
     //LO QUE VAMOS A HACER AQUI ES HACER EMITIR UNA SEÑAL CADA CIERTO TIEMPO CON LA LIBRERIA QTimer
     QTimer *timer = new QTimer();
@@ -25,7 +28,7 @@ Enemigo::Enemigo(QObject *parent)
 void Enemigo::move()
 {
     //movemos al enemigo
-    setPos(x()-2,y());
+    setPos(x()-2,720-130);
 
 
 

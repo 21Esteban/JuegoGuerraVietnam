@@ -6,9 +6,10 @@
 //para loas colisiones
 #include<QList>
 
-Bala::Bala() {
+Bala::Bala() :QGraphicsPixmapItem() {
     //CREAMOS EL DISEÑO DE LA BALA
-    setRect(0,0,50,10);
+    setPixmap(QPixmap(":/imagenes/balaSinFondo.png").scaled(70,30,Qt::KeepAspectRatio));
+
 
     //LO QUE VAMOS A HACER AQUI ES HACER EMITIR UNA SEÑAL CADA CIERTO TIEMPO CON LA LIBRERIA QTimer
     QTimer *timer = new QTimer();

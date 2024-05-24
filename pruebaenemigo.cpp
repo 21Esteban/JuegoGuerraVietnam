@@ -4,7 +4,7 @@ PruebaEnemigo::PruebaEnemigo(QObject *parent)
     : QObject{parent} , Personaje()
 {
     //creamos el enemigo
-    setRect(0,0,10,50);
+    setPixmap(QPixmap(":/imagenes/movimiento1SinFondo.png").scaled(80,80,Qt::KeepAspectRatio));
 }
 
 void PruebaEnemigo::move()
