@@ -3,6 +3,9 @@
 
 #include <QObject>
 #include "personaje.h"
+#include <QSoundEffect>
+//#include <QtMultimedia/QMediaPlayer>
+#include <QTimer>
 
 class Player : public QObject , public Personaje
 {
@@ -14,8 +17,16 @@ public:
     //hacemos un metodo para capturar los eventos de teclado para jugador
     void keyPressEvent(QKeyEvent *event);
 
+private:
+    QSoundEffect * sonidoDisparo;
+    QTimer *temporizadorAux;
+    int frame; // Para controlar el frame actual de la animación
+
 public slots:
     void spawn();
+    void cambiarImagenAlDisparar();
+    void actualizarAnimacion();
+
 
 signals:
 };

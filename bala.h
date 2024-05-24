@@ -1,9 +1,9 @@
 #ifndef BALA_H
 #define BALA_H
-#include<QGraphicsRectItem>
+#include<QGraphicsPixmapItem>
 #include<QObject>
 
-class Bala :public QObject, public QGraphicsRectItem{
+class Bala :public QObject, public QGraphicsPixmapItem{
     Q_OBJECT
 public:
     Bala();
