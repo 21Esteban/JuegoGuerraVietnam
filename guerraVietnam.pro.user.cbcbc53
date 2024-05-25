@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
+<<<<<<< HEAD
 <!-- Written by QtCreator 13.0.0, 2024-05-24T18:06:44. -->
+=======
+<!-- Written by QtCreator 13.0.0, 2024-05-21T19:56:14. -->
+>>>>>>> 55e9208a03054091bafb59fb219175125e1a86a6
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -241,10 +245,17 @@
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="bool" key="PE.EnvironmentAspect.PrintOnRun">false</value>
     <value type="QString" key="PerfRecordArgsId">-e cpu-cycles --call-graph &quot;dwarf,4096&quot; -F 250</value>
+<<<<<<< HEAD
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">guerraVietnam2</value>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/laura/OneDrive/Desktop/JuegoGuerraVietnam/guerraVietnam.pro</value>
     <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/laura/OneDrive/Desktop/JuegoGuerraVietnam/guerraVietnam.pro</value>
     <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">true</value>
+=======
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/laura/OneDrive/Desktop/PracticasInfo/guerraVietnam/guerraVietnam.pro</value>
+    <value type="QString" key="ProjectExplorer.RunConfiguration.BuildKey">C:/Users/laura/OneDrive/Desktop/PracticasInfo/guerraVietnam/guerraVietnam.pro</value>
+    <value type="bool" key="ProjectExplorer.RunConfiguration.Customized">false</value>
+>>>>>>> 55e9208a03054091bafb59fb219175125e1a86a6
     <value type="bool" key="RunConfiguration.UseCppDebuggerAuto">true</value>
     <value type="bool" key="RunConfiguration.UseLibrarySearchPath">true</value>
     <value type="bool" key="RunConfiguration.UseQmlDebuggerAuto">true</value>

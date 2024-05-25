@@ -13,7 +13,11 @@ Enemigo::Enemigo(QObject *parent)
     setPos(1280,720-130);
 
     //CREAMOS EL DISEÑO DE EL ENEMIGO
+<<<<<<< HEAD
     setPixmap(QPixmap(":/imagenes/movimiento1SinFondo.png").transformed(QTransform().scale(-1,1)).scaled(100,100,Qt::KeepAspectRatio));
+=======
+   setPixmap(QPixmap(":/imagenes/movimiento1SinFondo.png").scaled(100,100,Qt::KeepAspectRatio));
+>>>>>>> 55e9208a03054091bafb59fb219175125e1a86a6
 
     //LO QUE VAMOS A HACER AQUI ES HACER EMITIR UNA SEÑAL CADA CIERTO TIEMPO CON LA LIBRERIA QTimer
     QTimer *timer = new QTimer();
