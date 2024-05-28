@@ -7,6 +7,8 @@
 #include "player.h"
 #include "plataforma.h"
 #include "vida.h"
+#include <QTimer>
+#include <QRandomGenerator>
 
 class Game : public QGraphicsView
 {
@@ -17,7 +19,16 @@ public:
     Player * player;
     Plataforma *plataforma;
     Vida * vida;
+    QTimer * timer;
 
+
+    void incrementarNumEnemigos();
+    int getNumeroDeEnemigos();
+    void generarEnemigos();
+
+private:
+
+    int enemigosSpawneados;
 
 
 

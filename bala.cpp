@@ -5,8 +5,13 @@
 #include "enemigo.h"
 //para loas colisiones
 #include<QList>
+#include "player.h"
+#include "game.h"
 
-Bala::Bala() :QGraphicsPixmapItem() {
+extern Game * game;
+
+Bala::Bala(bool IsBulletFromPlayer) :QGraphicsPixmapItem() {
+    this->IsBulletFromPlayer = IsBulletFromPlayer;
     //CREAMOS EL DISEÑO DE LA BALA
     setPixmap(QPixmap(":/imagenes/balaSinFondo.png").scaled(70,30,Qt::KeepAspectRatio));
 
@@ -31,27 +36,60 @@ void Bala::movimiento()
 
     //vamos a recorrer la lista
 
-    for(int i = 0 , n = elementos_colisionados.size() ; i < n ; i++){
-        //vamos a checkear el id
-        if(typeid(*(elementos_colisionados[i])) == typeid(Enemigo)){
-            //eliminamos ambos elementos
-            scene()->removeItem(elementos_colisionados[i]);
-            scene()->removeItem(this);
+    if(this->IsBulletFromPlayer){
+        for(int i = 0 , n = elementos_colisionados.size() ; i < n ; i++){
+            //vamos a checkear el id
+            if(typeid(*(elementos_colisionados[i])) == typeid(Enemigo)){
+                //eliminamos ambos elementos
+                scene()->removeItem(elementos_colisionados[i]);
+                scene()->removeItem(this);
 
-            //eliminamos la memoria
-            delete elementos_colisionados[i];
-            delete this;
-            return;
+                //eliminamos la memoria
+                delete elementos_colisionados[i];
+                delete this;
+                return;
+            }
+
         }
+    }else{
+        for(int i = 0 , n = elementos_colisionados.size() ; i < n ; i++){
+            //vamos a checkear el id
+            if(typeid(*(elementos_colisionados[i])) == typeid(Bala) ){
+                //eliminamos ambos elementos
+                scene()->removeItem(elementos_colisionados[i]);
+                scene()->removeItem(this);
 
+                //eliminamos la memoria
+                delete elementos_colisionados[i];
+                delete this;
+                return;
+            }
+            else if(typeid(*(elementos_colisionados[i])) == typeid(Player)){
+                qDebug()<<"Entre";
+                scene()->removeItem(this);
+                delete this;
+               // game->vida->decrease();
+                qDebug()<<"sali";
+            }
+
+        }
     }
 
-    this->setPos(x()+10,y());
 
-    //si la posicion de la bala es mayor que la de el ancho de la escena entonces eliminamos la bala para liberar memoria
-    if(pos().x() > scene()->width()){
+
+    if(this->IsBulletFromPlayer){
+        this->setPos(x()+10,y());
+    }else{
+        this->setPos(x()-10,y());
+    }
+
+
+    //si la posicion de la bala es mayor que la de el ancho de la escena entonces eliminamos la bala para liberar memoria de la misma manera si la posicion es menor que 0 (se sale por el lado izquierdo) la eliminamos
+    if(pos().x() > scene()->width() ||pos().x() < 0 ){
         scene()->removeItem(this);
         delete this;
         qDebug()<<"bala eliminada correctamente";
     }
 }
+
+

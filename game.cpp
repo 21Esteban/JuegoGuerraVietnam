@@ -9,7 +9,7 @@ Game::Game(QWidget *parent)
      escena = new QGraphicsScene();
 
     //acomodamos el centrado de la escena
-    escena->setSceneRect(0,0,1280,720);
+     escena->setSceneRect(0,0,1280,720);
      setBackgroundBrush(QBrush(QImage(":/imagenes/fondo2.jpg").scaled(1280, 720)));
 
      setScene(escena);
@@ -21,10 +21,6 @@ Game::Game(QWidget *parent)
     //establecemos el tamaño de la vista
     setFixedSize(1280,720);
 
-
-
-
-
     //creamos nuestroPersonaje principal
      player = new Player();
     //modificamos las propiedades de nuestro personaje
@@ -35,19 +31,18 @@ Game::Game(QWidget *parent)
     player->setFlag(QGraphicsItem::ItemIsFocusable);
     player->setFocus();
 
+    this->enemigosSpawneados = 0;
 
     //agregamos nuestro personaje a la escena
     escena->addItem(player);
-
-
-
 
     //creamos una plataforma
     //plataforma = new Plataforma();
 
     //creamos nuestras vidas
     vida = new Vida();
-
+    //acomodamos nuestro corazon en la escena
+    vida->setPos(x() + 5, y()+5);
 
     //añadimos la plataforma a nuestra escena y las vidas
    // escena->addItem(plataforma);
@@ -56,25 +51,33 @@ Game::Game(QWidget *parent)
 
     //QGraphicsView *view = new QGraphicsView(escena);
 
-    //spawm enemigos
-    QTimer * timer = new QTimer();
-    QObject::connect(timer,SIGNAL(timeout()),player,SLOT(spawn()));
-    timer->start(2000);
+    //spawm enemigos como quiero que los enemigos aparezcan en un rango limite de 2 min y que en esos 2 minutos su aparicion sea random
+    timer = new QTimer();
+        QObject::connect(timer,SIGNAL(timeout()),player,SLOT(spawn()));
+        timer->start(2000);
+       // timer->start(QRandomGenerator::global()->bounded(2000, 60000)); // Intervalo aleatorio entre 3000 y 120000 milisegundos (3 y 120 segundos)
+
+
+
 
     //mostramos la vista
     show();
 
-
-
-
-
-
-
-
     //todo: Implementar el movimiento parabolico para el salto del personaje
 
+}
 
+void Game::incrementarNumEnemigos()
+{
+    this->enemigosSpawneados++;
+}
 
+int Game::getNumeroDeEnemigos()
+{
+    return this->enemigosSpawneados;
+}
 
+void Game::generarEnemigos()
+{
 
 }

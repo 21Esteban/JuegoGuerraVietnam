@@ -1,25 +1,34 @@
 #include "vida.h"
 #include <QFont>
+#include <QPixmap>
 
-Vida::Vida(QGraphicsItem *parent)
-    : QGraphicsTextItem(parent)
+Vida::Vida(QObject *parent)
+    :  QObject{parent}, QGraphicsPixmapItem()
 {
-    this->numVidas = 3;
+    //creamos la imagen
+
+    this->numVidas = 2;
+    setPixmap(QPixmap(this->imagenesVida[2]).scaled(60,60,Qt::KeepAspectRatio));
+
 
     //dibujamos el texto
 
-    setPlainText("Vidas : " + QString::number(numVidas));
+    /*
     setDefaultTextColor(Qt::red);
-    setFont(QFont("Sans Serif", 16));
+    setFont(QFont("Sans Serif", 16));*/
+
 }
 
 void Vida::decrease()
 {
     this->numVidas--;
-    setPlainText("Vidas : " + QString::number(numVidas));
+    //setPlainText("Vidas : " + QString::number(numVidas));
+    setPixmap(QPixmap(this->imagenesVida[numVidas]).scaled(60,60,Qt::KeepAspectRatio));
 }
 
 int Vida::getVidas()
 {
     return numVidas;
 }
+
+

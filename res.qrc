@@ -5,13 +5,11 @@
         <file>sonido2Acortado.wav</file>
     </qresource>
     <qresource prefix="/imagenes">
-        <file>corazon.png</file>
         <file>sprite.jpg</file>
         <file>sprite2.jpg</file>
         <file>sprite3.jpg</file>
         <file>suelo.jpg</file>
         <file>sueloBueno.jpg</file>
-        <file>bala.jpg</file>
         <file>balaSinFondo.png</file>
         <file>fondo.jpg</file>
         <file>fondo2.jpg</file>
@@ -22,5 +20,8 @@
         <file>movimiento1SinFondo.png</file>
         <file>movimiento2SinFondo.png</file>
         <file>movimiento3SinFondo.png</file>
+        <file>corazonSinFondo.png</file>
+        <file>corazon3SinFondo.png</file>
+        <file>corazonSinFondo2.png</file>
     </qresource>
 </RCC>

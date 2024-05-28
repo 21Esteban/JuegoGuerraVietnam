@@ -6,10 +6,14 @@
 class Bala :public QObject, public QGraphicsPixmapItem{
     Q_OBJECT
 public:
-    Bala();
+    Bala(bool IsBulletFromPlayer);
 
 public slots:
     void movimiento();
+
+private:
+
+    bool IsBulletFromPlayer;
 
 };
 
