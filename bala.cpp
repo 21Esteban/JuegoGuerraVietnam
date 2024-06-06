@@ -68,8 +68,9 @@ void Bala::movimiento()
                 qDebug()<<"Entre";
                 scene()->removeItem(this);
                 delete this;
-               // game->vida->decrease();
+                game->vida->decrease();
                 qDebug()<<"sali";
+                return;
             }
 
         }

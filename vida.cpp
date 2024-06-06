@@ -7,7 +7,7 @@ Vida::Vida(QObject *parent)
 {
     //creamos la imagen
 
-    this->numVidas = 2;
+    this->numVidas = 3;
     setPixmap(QPixmap(this->imagenesVida[2]).scaled(60,60,Qt::KeepAspectRatio));
 
 

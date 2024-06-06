@@ -21,8 +21,15 @@ public:
     void keyPressEvent(QKeyEvent *event);
 
 private:
+    // Variables para el salto
+    bool isJumping;
+    qreal jumpVelocity;
+    qreal jumpHeight;
+    qreal currentJumpHeight;
+
     QSoundEffect * sonidoDisparo;
     QTimer *temporizadorAux;
+    QTimer *jumpTimer;
 
     int frame;
     QString animacionPath1  = ":/imagenes/movimiento1SinFondo.png";
@@ -36,7 +43,7 @@ public slots:
     void spawn();
     void cambiarImagenAlDisparar();
     void actualizarAnimacion();
-
+    void jump(); // Nuevo método para controlar el salto
 
 signals:
 };

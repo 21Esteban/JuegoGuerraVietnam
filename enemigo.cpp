@@ -75,7 +75,7 @@ void Enemigo::disparar()
     //ahora que creamos la bala ,debemos de añadirla a la escena
     scene()->addItem(bala);
     //cambiamos la imagen en momento del disparo
-   // setPixmap(QPixmap(":/imagenes/disparandoSinFondo.png").scaled(100,100,Qt::KeepAspectRatio));
+    //setPixmap(QPixmap(":/imagenes/disparandoSinFondo.png").scaled(100,100,Qt::KeepAspectRatio));
     //repdroducimos el sonido del disparo
     //this->sonidoDisparo->play();
 }

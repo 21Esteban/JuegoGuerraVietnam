@@ -12,7 +12,11 @@ extern Game * game;
 Player::Player(QObject *parent)
     : QObject{parent} , Personaje()
 {
-
+    // Inicialización de variables para el salto
+    isJumping = false;
+    jumpVelocity = -10.0; // Velocidad inicial del salto (ajústalo según sea necesario)
+    jumpHeight = 100.0;   // Altura máxima del salto (ajústalo según sea necesario)
+    currentJumpHeight = 0.0;
     //agreagamos las animaciones a un arreglo que contiene las rutas de las imagenes que compondran nuestra animacion
     this->animaciones.push_back(animacionPath1);
     this->animaciones.push_back(animacionPath2);
@@ -49,9 +53,13 @@ void Player::keyPressEvent(QKeyEvent *event)
     }
     /* else if(event->key() == Qt::Key_Down){
         setPos(x(),y()+10);
-    }  */  else if(event->key() == Qt::Key_Up || event->key() == Qt::Key_W ){
-        setPos(x(),y()-10);
-    }else if(event->key() == Qt::Key_Space){
+ } */else if (event->key() == Qt::Key_W) {
+        if (!isJumping) {
+            isJumping = true;
+            jump();
+        }
+    }
+    else if(event->key() == Qt::Key_Space){
         //si se le da al espacio, quiero hacer un disparo.
         Bala *bala = new Bala(true);
         //ya con la bala creada queremos que aparezca un poquito adelante del personaje
@@ -105,6 +113,32 @@ void Player::actualizarAnimacion()
     } else if (frame == 3) {
         setPixmap(QPixmap(":/imagenes/movimiento1SinFondo.png").scaled(100, 100, Qt::KeepAspectRatio));
         frame = 1;
+    }
+}
+void Player::jump()
+{
+    if (currentJumpHeight < jumpHeight) {
+        qreal newY = y() + jumpVelocity;
+        if (newY >= 0) { // Evitar que el personaje salga de la pantalla por arriba
+            setY(newY);
+            currentJumpHeight += qAbs(jumpVelocity);
+            QTimer::singleShot(20, this, &Player::jump);
+            // Llama recursivamente para simular el movimiento de salto
+        } else {
+            currentJumpHeight = jumpHeight;
+            isJumping = false;
+        }
+    } else {
+        // Simular la caída del personaje
+        qreal newY = y() + 2.0; // Velocidad de caída (ajusta según sea necesario)
+        if (newY <= scene()->height() - boundingRect().height()) { // Evitar que el personaje caiga fuera de la pantalla por abajo
+            setY(newY);
+            QTimer::singleShot(20, this, &Player::jump); // Llama recursivamente para simular la caída
+        } else {
+            setY(scene()->height() - boundingRect().height());
+            currentJumpHeight = 0.0;
+            isJumping = false;
+        }
     }
 }
 
