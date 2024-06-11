@@ -11,11 +11,7 @@ Game::Game(QWidget *parent)
 
     //acomodamos el centrado de la escena
      escena->setSceneRect(0,0,1280,720);
-<<<<<<< HEAD
      setBackgroundBrush(QBrush(QImage(":/imagenes/SPRITE/fondo2.jpg").scaled(1280, 720)));
-=======
-     setBackgroundBrush(QBrush(QImage(":/imagenes/fondo2.jpg").scaled(1280, 720)));
->>>>>>> a20a094be80bf8904920b78fe30515ef531c6d04
 
      setScene(escena);
 
@@ -102,11 +98,7 @@ void Game::cambiarEscena()
     // Crear una nueva escena
     nuevaEscena = new QGraphicsScene();
     nuevaEscena->setSceneRect(0, 0, 1280, 720);
-<<<<<<< HEAD
     setBackgroundBrush(QBrush(QImage(":/imagenes/SPRITE/fondo4.jpg").scaled(1280, 720)));
-=======
-    setBackgroundBrush(QBrush(QImage(":/imagenes/fondo4.jpg").scaled(1280, 720)));
->>>>>>> a20a094be80bf8904920b78fe30515ef531c6d04
 
     // Cambiar a la nueva escena
     setScene(nuevaEscena);
