@@ -1,6 +1,7 @@
 #include "game.h"
 #include <QTimer>
 #include<QImage>
+#include"fondomovido.h"
 
 Game::Game(QWidget *parent)
     : QGraphicsView(parent)
@@ -17,9 +18,12 @@ Game::Game(QWidget *parent)
     //COMO NO QUEREMOS QUE HAYA EL SCROLLBAR ENTONCES LOS QUITAMOS
     setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
     //establecemos el tamaño de la vista
     setFixedSize(1280,720);
+   // fondoMovido = new FondoMovido(":/imagenes/fondo2.jpg", ":/imagenes/fondo2.jpg"); // Usamos la misma imagen 2 veces
+   // escena->addItem(fondoMovido);
+   // fondoMovido->startMoving();
+
 
     //creamos nuestroPersonaje principal
      player = new Player();
@@ -47,6 +51,12 @@ Game::Game(QWidget *parent)
     //añadimos la plataforma a nuestra escena y las vidas
    // escena->addItem(plataforma);
     escena->addItem(vida);
+
+    //creamos el obstaculo que en este caso va a ser la piedra
+    piedra = new Piedra();
+    //acomodamos nuestra piedra en la escena
+    piedra->setPos(150,720-130);
+    escena->addItem(piedra);
     //creamos la vista
 
     //QGraphicsView *view = new QGraphicsView(escena);

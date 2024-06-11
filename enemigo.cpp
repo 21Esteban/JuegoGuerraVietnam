@@ -10,13 +10,16 @@ extern Game * game;
 Enemigo::Enemigo(QObject *parent)
     :  QObject{parent}, Personaje()
 {
+    //acomodamos la vida del enemigo
+    //this->vida.setNumVidas(3);
+
     //hacemos que el enemigo aparezca posicionado por la derecha y se mueva hacia la izquierda
 
     setPos(1280,720-130);
 
     //CREAMOS EL DISEÑO DE EL ENEMIGO
 
-    setPixmap(QPixmap(":/imagenes/movimiento1SinFondo.png").transformed(QTransform().scale(-1,1)).scaled(100,100,Qt::KeepAspectRatio));
+    setPixmap(QPixmap(":/imagenes/1enemigos.png").transformed(QTransform().scale(-1,1)).scaled(100,100,Qt::KeepAspectRatio));
 
 
     //cargamos el sonido de la bala
@@ -50,7 +53,7 @@ void Enemigo::move()
 {
     // Generamos un número aleatorio entre 0 y 1
     int decision = QRandomGenerator::global()->bounded(2);
-    qDebug() <<decision;
+   // qDebug() <<decision;
 
     // Movemos al enemigo
     if (decision == 0) {
@@ -79,3 +82,33 @@ void Enemigo::disparar()
     //repdroducimos el sonido del disparo
     //this->sonidoDisparo->play();
 }
+
+void Enemigo::recibirDisparo()
+{
+    // Número de veces que el enemigo parpadeará
+    static int parpadeosRestantes = 3;
+
+    // Si aún hay parpadeos por hacer
+    if (parpadeosRestantes > 0) {
+        // Quitamos la imagen
+        setPixmap(QPixmap());
+
+        // Usamos un temporizador para restaurar la imagen original después de 200 milisegundos
+        QTimer::singleShot(25, [this]() {
+            setPixmap(QPixmap(":/imagenes/1enemigos.png").transformed(QTransform().scale(-1, 1)).scaled(100, 100, Qt::KeepAspectRatio));
+
+            // Decrementamos el contador de parpadeos restantes
+            parpadeosRestantes--;
+
+            // Llamamos de nuevo a recibirDisparo para el siguiente parpadeo
+            recibirDisparo();
+        });
+    } else {
+        // Restauramos el contador de parpadeos para futuros disparos
+        parpadeosRestantes = 3;
+    }
+
+
+
+}
+

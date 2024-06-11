@@ -2,50 +2,43 @@
 #define PLAYER_H
 
 #include <QObject>
-#include "personaje.h"
-#include <QSoundEffect>
-//#include <QtMultimedia/QMediaPlayer>
+#include <QGraphicsPixmapItem>
+#include <QKeyEvent>
+#include <QSet>
 #include <QTimer>
+#include <QSoundEffect>
+#include "personaje.h"
 
-#include <QString>
-#include <QVector>
-
-class Player : public QObject , public Personaje
+class Player : public QObject, public Personaje
 {
     Q_OBJECT
 public:
-      //player hereda todos los metodos y atributos de Personaje
     explicit Player(QObject *parent = nullptr);
+   // virtual ~Player();
 
-    //hacemos un metodo para capturar los eventos de teclado para jugador
-    void keyPressEvent(QKeyEvent *event);
+    void keyPressEvent(QKeyEvent *event) override;
+    void keyReleaseEvent(QKeyEvent *event) override;
+
+private slots:
+    void updateMovement();
+    void cambiarImagenAlDisparar();
+    void jump();
+    void shoot();
+    void spawn();
 
 private:
-    // Variables para el salto
     bool isJumping;
     qreal jumpVelocity;
     qreal jumpHeight;
     qreal currentJumpHeight;
-
-    QSoundEffect * sonidoDisparo;
+    QList<QString> animaciones;
     QTimer *temporizadorAux;
-    QTimer *jumpTimer;
-
+    QSet<int> keysPressed;
+    QSoundEffect *sonidoDisparo;
     int frame;
-    QString animacionPath1  = ":/imagenes/movimiento1SinFondo.png";
-    QString animacionPath2  = ":/imagenes/movimiento2SinFondo.png";
-    QString animacionPath3  = ":/imagenes/movimiento3SinFondo.png";
-    QVector<QString> animaciones ;
 
-
-
-public slots:
-    void spawn();
-    void cambiarImagenAlDisparar();
-    void actualizarAnimacion();
-    void jump(); // Nuevo método para controlar el salto
-
-signals:
+    void moveLeft();
+    void moveRight();
 };
 
 #endif // PLAYER_H

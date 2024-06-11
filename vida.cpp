@@ -19,6 +19,7 @@ Vida::Vida(QObject *parent)
 
 }
 
+
 void Vida::decrease()
 {
     this->numVidas--;
@@ -29,6 +30,11 @@ void Vida::decrease()
 int Vida::getVidas()
 {
     return numVidas;
+}
+
+void Vida::setNumVidas(int numVidas)
+{
+    this->numVidas = numVidas;
 }
 
 

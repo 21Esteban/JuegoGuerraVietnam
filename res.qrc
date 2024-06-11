@@ -3,6 +3,7 @@
         <file>efectoDisparo.mp3</file>
         <file>sonido2.wav</file>
         <file>sonido2Acortado.wav</file>
+        <file>piedraSinFondo.png</file>
     </qresource>
     <qresource prefix="/imagenes">
         <file>sprite.jpg</file>
@@ -23,5 +24,7 @@
         <file>corazonSinFondo.png</file>
         <file>corazon3SinFondo.png</file>
         <file>corazonSinFondo2.png</file>
+        <file>piedraSinFondo.png</file>
+        <file>1enemigos.png</file>
     </qresource>
 </RCC>

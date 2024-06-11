@@ -40,12 +40,25 @@ void Bala::movimiento()
         for(int i = 0 , n = elementos_colisionados.size() ; i < n ; i++){
             //vamos a checkear el id
             if(typeid(*(elementos_colisionados[i])) == typeid(Enemigo)){
+
+                Enemigo *enemigo = dynamic_cast<Enemigo *>(elementos_colisionados[i]);
                 //eliminamos ambos elementos
-                scene()->removeItem(elementos_colisionados[i]);
+                if(enemigo){
+                    qDebug()<<"Entre";
+                    enemigo->vida.decrease();
+                    if(enemigo->vida.getVidas() <= 0){
+                        scene()->removeItem(enemigo);
+                        delete enemigo;
+                    }else{
+                        enemigo->recibirDisparo();
+                    }
+
+                }
+
                 scene()->removeItem(this);
 
                 //eliminamos la memoria
-                delete elementos_colisionados[i];
+
                 delete this;
                 return;
             }
