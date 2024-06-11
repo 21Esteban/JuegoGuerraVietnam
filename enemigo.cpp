@@ -19,7 +19,11 @@ Enemigo::Enemigo(QObject *parent)
 
     //CREAMOS EL DISEÑO DE EL ENEMIGO
 
+<<<<<<< HEAD
     setPixmap(QPixmap(":/imagenes/SPRITE/1enemigos.png").transformed(QTransform().scale(-1,1)).scaled(100,100,Qt::KeepAspectRatio));
+=======
+    setPixmap(QPixmap(":/imagenes/1enemigos.png").transformed(QTransform().scale(-1,1)).scaled(100,100,Qt::KeepAspectRatio));
+>>>>>>> a20a094be80bf8904920b78fe30515ef531c6d04
 
 
     //cargamos el sonido de la bala
@@ -95,7 +99,11 @@ void Enemigo::recibirDisparo()
 
         // Usamos un temporizador para restaurar la imagen original después de 200 milisegundos
         QTimer::singleShot(25, [this]() {
+<<<<<<< HEAD
             setPixmap(QPixmap(":/imagenes/SPRITE/1enemigos.png").transformed(QTransform().scale(-1, 1)).scaled(100, 100, Qt::KeepAspectRatio));
+=======
+            setPixmap(QPixmap(":/imagenes/1enemigos.png").transformed(QTransform().scale(-1, 1)).scaled(100, 100, Qt::KeepAspectRatio));
+>>>>>>> a20a094be80bf8904920b78fe30515ef531c6d04
 
             // Decrementamos el contador de parpadeos restantes
             parpadeosRestantes--;

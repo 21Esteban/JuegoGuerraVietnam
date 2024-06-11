@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/sonidos">
+<<<<<<< HEAD
         <file>SONIDOS/efectoDisparo.mp3</file>
         <file>SONIDOS/sonido2.wav</file>
         <file>SONIDOS/sonido2Acortado.wav</file>
@@ -32,5 +33,33 @@
         <file>SPRITE/sprite3.jpg</file>
         <file>SPRITE/suelo.jpg</file>
         <file>SPRITE/sueloBueno.jpg</file>
+=======
+        <file>efectoDisparo.mp3</file>
+        <file>sonido2.wav</file>
+        <file>sonido2Acortado.wav</file>
+        <file>piedraSinFondo.png</file>
+    </qresource>
+    <qresource prefix="/imagenes">
+        <file>sprite.jpg</file>
+        <file>sprite2.jpg</file>
+        <file>sprite3.jpg</file>
+        <file>suelo.jpg</file>
+        <file>sueloBueno.jpg</file>
+        <file>balaSinFondo.png</file>
+        <file>fondo.jpg</file>
+        <file>fondo2.jpg</file>
+        <file>fondo3.jpg</file>
+        <file>fondo4.jpg</file>
+        <file>fondo5.jpg</file>
+        <file>disparandoSinFondo.png</file>
+        <file>movimiento1SinFondo.png</file>
+        <file>movimiento2SinFondo.png</file>
+        <file>movimiento3SinFondo.png</file>
+        <file>corazonSinFondo.png</file>
+        <file>corazon3SinFondo.png</file>
+        <file>corazonSinFondo2.png</file>
+        <file>piedraSinFondo.png</file>
+        <file>1enemigos.png</file>
+>>>>>>> a20a094be80bf8904920b78fe30515ef531c6d04
     </qresource>
 </RCC>
