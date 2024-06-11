@@ -5,7 +5,7 @@
 #include "enemigo.h"
 #include <QDebug>
 #include "game.h"
-
+#include "piedra.h"
 
 extern Game * game;
 
@@ -15,7 +15,7 @@ Player::Player(QObject *parent)
     // Inicialización de variables para el salto
     isJumping = false;
     jumpVelocity = -10.0; // Velocidad inicial del salto (ajústalo según sea necesario)
-    jumpHeight = 100.0;   // Altura máxima del salto (ajústalo según sea necesario)
+    jumpHeight = 130.0;   // Altura máxima del salto (ajústalo según sea necesario)
     currentJumpHeight = 0.0;
     //agreagamos las animaciones a un arreglo que contiene las rutas de las imagenes que compondran nuestra animacion
     this->animaciones.push_back(animacionPath1);
@@ -37,8 +37,20 @@ Player::Player(QObject *parent)
 
 void Player::keyPressEvent(QKeyEvent *event)
 {
+
+    QList<QGraphicsItem *> elementos_colisionados = collidingItems();
+
     //qDebug() <<"acabas de presionar una tecla";
     if(event->key() == Qt::Key_Right || event->key() == Qt::Key_D){
+
+        for (int i = 0; i < elementos_colisionados.size(); ++i) {
+            if (typeid(*(elementos_colisionados[i])) == typeid(Piedra) && this->x() <= 150) {
+                // Si colisionamos con el objeto, no movemos al jugador
+                qDebug() << "Colisión con Objeto detectada. Movimiento bloqueado.";
+                return;
+            }
+        }
+
         setPos(x()+10,y());
 
         this->frame = (this->frame + 1) % 3; // Esto hará que el frame se reinicie a 0 después de alcanzar 2
@@ -46,6 +58,15 @@ void Player::keyPressEvent(QKeyEvent *event)
         setPixmap(QPixmap(this->animaciones[frame]).scaled(100,100,Qt::KeepAspectRatio));
 
     }else if(event->key() == Qt::Key_Left || event->key() == Qt::Key_A){
+        for (int i = 0; i < elementos_colisionados.size(); ++i) {
+            if (typeid(*(elementos_colisionados[i])) == typeid(Piedra) && this->x() >=210) {
+                // Si colisionamos con el objeto, no movemos al jugador
+                qDebug() << "Colisión con Objeto detectada. Movimiento bloqueado.";
+                return;
+            }
+        }
+
+
         if(pos().x()>0){
             setPos(x()-10,y());
             this->frame = (this->frame + 1) % 3; // Esto hará que el frame se reinicie a 0 después de alcanzar 2
@@ -133,7 +154,7 @@ void Player::jump()
         }
     } else {
         // Simular la caída del personaje
-        qreal newY = y() + 3; // Velocidad de caída (ajusta según sea necesario)
+        qreal newY = y() + 2; // Velocidad de caída (ajusta según sea necesario)
         if (newY <= scene()->height() - boundingRect().height()-30) { // Evitar que el personaje caiga fuera de la pantalla por abajo
             setY(newY);;
             QTimer::singleShot(20, this, &Player::jump); // Llama recursivamente para simular la caída

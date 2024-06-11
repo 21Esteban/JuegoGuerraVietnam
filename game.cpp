@@ -2,6 +2,7 @@
 #include <QTimer>
 #include<QImage>
 #include"fondomovido.h"
+
 Game::Game(QWidget *parent)
     : QGraphicsView(parent)
 {
@@ -50,7 +51,13 @@ Game::Game(QWidget *parent)
     //añadimos la plataforma a nuestra escena y las vidas
    // escena->addItem(plataforma);
     escena->addItem(vida);
-    //creamos la vista
+
+    //creamos el obstaculo que en este caso va a ser la piedra
+    piedra = new Piedra();
+    //acomodamos nuestra piedra en la escena
+    piedra->setPos(150,720-120);
+    escena->addItem(piedra);
+    //creamos la vista|
 
     //QGraphicsView *view = new QGraphicsView(escena);
 

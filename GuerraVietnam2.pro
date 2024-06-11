@@ -17,6 +17,7 @@ SOURCES += \
     game.cpp \
     main.cpp \
     personaje.cpp \
+    piedra.cpp \
     plataforma.cpp \
     player.cpp \
     pruebaenemigo.cpp \
@@ -28,6 +29,7 @@ HEADERS += \
     fondomovido.h \
     game.h \
     personaje.h \
+    piedra.h \
     plataforma.h \
     player.h \
     pruebaenemigo.h \

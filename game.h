@@ -10,6 +10,7 @@
 #include <QTimer>
 #include <QRandomGenerator>
 #include "fondomovido.h"
+#include "piedra.h"
 
 class Game : public QGraphicsView
 {
@@ -22,6 +23,7 @@ public:
     Vida * vida;
     QTimer * timer;
     Vida * enemigo;
+    Piedra *piedra;
 
 
     void incrementarNumEnemigos();
