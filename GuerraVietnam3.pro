@@ -15,8 +15,10 @@ SOURCES += \
     enemigo.cpp \
     fondomovido.cpp \
     game.cpp \
+    iniciojuego.cpp \
     main.cpp \
     personaje.cpp \
+    piedra.cpp \
     plataforma.cpp \
     player.cpp \
     pruebaenemigo.cpp \
@@ -27,7 +29,9 @@ HEADERS += \
     enemigo.h \
     fondomovido.h \
     game.h \
+    iniciojuego.h \
     personaje.h \
+    piedra.h \
     plataforma.h \
     player.h \
     pruebaenemigo.h \

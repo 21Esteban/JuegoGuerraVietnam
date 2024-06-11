@@ -1,16 +1,17 @@
 #include "game.h"
 #include <QTimer>
 #include<QImage>
-#include"fondomovido.h"
+
 Game::Game(QWidget *parent)
     : QGraphicsView(parent)
 {
     //creamos una escena
      escena = new QGraphicsScene();
+     nuevaEscena = new QGraphicsScene();
 
     //acomodamos el centrado de la escena
      escena->setSceneRect(0,0,1280,720);
-     //setBackgroundBrush(QBrush(QImage(":/imagenes/fondo2.jpg").scaled(1280, 720)));
+     setBackgroundBrush(QBrush(QImage(":/imagenes/SPRITE/fondo2.jpg").scaled(1280, 720)));
 
      setScene(escena);
 
@@ -19,9 +20,9 @@ Game::Game(QWidget *parent)
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     //establecemos el tamaño de la vista
     setFixedSize(1280,720);
-    fondoMovido = new FondoMovido(":/imagenes/fondo2.jpg", ":/imagenes/fondo2.jpg"); // Usamos la misma imagen 2 veces
-    escena->addItem(fondoMovido);
-    fondoMovido->startMoving();
+   // fondoMovido = new FondoMovido(":/imagenes/fondo2.jpg", ":/imagenes/fondo2.jpg"); // Usamos la misma imagen 2 veces
+   // escena->addItem(fondoMovido);
+   // fondoMovido->startMoving();
 
 
     //creamos nuestroPersonaje principal
@@ -50,6 +51,12 @@ Game::Game(QWidget *parent)
     //añadimos la plataforma a nuestra escena y las vidas
    // escena->addItem(plataforma);
     escena->addItem(vida);
+
+    //creamos el obstaculo que en este caso va a ser la piedra
+    piedra = new Piedra();
+    //acomodamos nuestra piedra en la escena
+    piedra->setPos(150,720-130);
+    escena->addItem(piedra);
     //creamos la vista
 
     //QGraphicsView *view = new QGraphicsView(escena);
@@ -63,10 +70,11 @@ Game::Game(QWidget *parent)
 
 
 
+
     //mostramos la vista
     show();
 
-    //todo: Implementar el movimiento parabolico para el salto del personaje
+     connect(player, &Player::llegoAlFinalDeEscena, this, &Game::cambiarEscena);
 
 }
 
@@ -83,4 +91,42 @@ int Game::getNumeroDeEnemigos()
 void Game::generarEnemigos()
 {
 
+}
+
+void Game::cambiarEscena()
+{
+    // Crear una nueva escena
+    nuevaEscena = new QGraphicsScene();
+    nuevaEscena->setSceneRect(0, 0, 1280, 720);
+    setBackgroundBrush(QBrush(QImage(":/imagenes/SPRITE/fondo4.jpg").scaled(1280, 720)));
+
+    // Cambiar a la nueva escena
+    setScene(nuevaEscena);
+
+    // Eliminar la escena anterior si no la necesitas más
+    delete escena;
+
+
+
+    escena = nullptr;
+    player = nullptr;
+    player1 = new Player();
+    //modificamos las propiedades de nuestro personaje
+    // player->setRect(0,0,100,100);
+    //Ahora acomodamos la posicion de nuestro player
+    player1->setPos(10, 720-280);
+    //hacemos que nuestro personaje sea centrado o focusable para que ese objeto obtenga info de las teclas presionadas
+    player1->setFlag(QGraphicsItem::ItemIsFocusable);
+    player1->setFocus();
+
+    // Agregar el jugador a la nueva escena
+    nuevaEscena->addItem(player1);
+
+    // Ajustar la posición del jugador en la nueva escena si es necesario
+   // player->setPos(100, 720 - 130);
+
+
+
+    // Mostrar la nueva escena
+   // show();
 }
