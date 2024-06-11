@@ -18,7 +18,9 @@ public:
     explicit Game(QWidget *parent = 0);
 
     QGraphicsScene * escena;
+    QGraphicsScene * nuevaEscena;
     Player * player;
+    Player * player1;
     Plataforma *plataforma;
     Vida * vida;
     QTimer * timer;
@@ -29,6 +31,7 @@ public:
     void incrementarNumEnemigos();
     int getNumeroDeEnemigos();
     void generarEnemigos();
+    void cambiarEscena();
 
 private:
 

@@ -111,9 +111,16 @@ void Player::updateMovement()
             }
         }
 
+
         setPos(x() + 10, y());
         frame = (frame + 1) % 3; // Esto hará que el frame se reinicie a 0 después de alcanzar 2
         setPixmap(QPixmap(animaciones[frame]).scaled(100, 100, Qt::KeepAspectRatio));
+
+
+        if (pos().x() > 1280) {
+            qDebug() << "cambio de escena";
+            emit llegoAlFinalDeEscena();
+        }
     }
 }
 

@@ -12,6 +12,10 @@
 class Player : public QObject, public Personaje
 {
     Q_OBJECT
+
+signals:
+    void llegoAlFinalDeEscena();
+
 public:
     explicit Player(QObject *parent = nullptr);
    // virtual ~Player();
