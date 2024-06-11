@@ -12,6 +12,7 @@
 #include "fondomovido.h"
 #include "piedra.h"
 
+
 class Game : public QGraphicsView
 {
 public:
@@ -27,11 +28,12 @@ public:
     Vida * enemigo;
     Piedra *piedra;
 
-
+    void crearYAgregarVidas();
     void incrementarNumEnemigos();
     int getNumeroDeEnemigos();
     void generarEnemigos();
     void cambiarEscena();
+                          // Método para generar enemigos en la nueva escena
 
 private:
 

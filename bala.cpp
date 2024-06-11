@@ -7,6 +7,7 @@
 #include<QList>
 #include "player.h"
 #include "game.h"
+#include"enemigo2.h"
 
 extern Game * game;
 

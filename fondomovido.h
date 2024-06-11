@@ -18,7 +18,8 @@ private:
     QTimer *timer;
     QPixmap pixmap1, pixmap2;
     int currentImage;
-    qreal initialPosX; // Posición inicial de la primera imagen
+    qreal initialPosX; // Posición inicial de la primera image
+
 };
 
 #endif // FONDOMOVIDO_H

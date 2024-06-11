@@ -32,5 +32,6 @@
         <file>SPRITE/sprite3.jpg</file>
         <file>SPRITE/suelo.jpg</file>
         <file>SPRITE/sueloBueno.jpg</file>
+        <file>SPRITE/enemigos2.png</file>
     </qresource>
 </RCC>

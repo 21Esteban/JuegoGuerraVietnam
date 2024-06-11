@@ -1,7 +1,8 @@
 #include "game.h"
 #include <QTimer>
 #include<QImage>
-
+#include<enemigo.h>
+#include<enemigo2.h>
 Game::Game(QWidget *parent)
     : QGraphicsView(parent)
 {
@@ -20,9 +21,9 @@ Game::Game(QWidget *parent)
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     //establecemos el tamaño de la vista
     setFixedSize(1280,720);
-   // fondoMovido = new FondoMovido(":/imagenes/fondo2.jpg", ":/imagenes/fondo2.jpg"); // Usamos la misma imagen 2 veces
-   // escena->addItem(fondoMovido);
-   // fondoMovido->startMoving();
+    //fondoMovido = new FondoMovido(":/imagenes/fondo2.jpg", ":/imagenes/fondo2.jpg"); // Usamos la misma imagen 2 veces
+    //escena->addItem(fondoMovido);
+    //fondoMovido->startMoving();
 
 
     //creamos nuestroPersonaje principal
@@ -42,15 +43,8 @@ Game::Game(QWidget *parent)
 
     //creamos una plataforma
     //plataforma = new Plataforma();
+    crearYAgregarVidas();
 
-    //creamos nuestras vidas
-    vida = new Vida();
-    //acomodamos nuestro corazon en la escena
-    vida->setPos(x() + 5, y()+5);
-
-    //añadimos la plataforma a nuestra escena y las vidas
-   // escena->addItem(plataforma);
-    escena->addItem(vida);
 
     //creamos el obstaculo que en este caso va a ser la piedra
     piedra = new Piedra();
@@ -77,6 +71,13 @@ Game::Game(QWidget *parent)
      connect(player, &Player::llegoAlFinalDeEscena, this, &Game::cambiarEscena);
 
 }
+void Game::crearYAgregarVidas()
+{
+    // Crear y agregar la vida a la escena
+    vida = new Vida();
+    vida->setPos(5, 5); // Ajustar la posición según sea necesario
+    escena->addItem(vida);
+}
 
 void Game::incrementarNumEnemigos()
 {
@@ -90,6 +91,15 @@ int Game::getNumeroDeEnemigos()
 
 void Game::generarEnemigos()
 {
+        if (scene() == escena) {
+            Enemigo *enemigo = new Enemigo();
+            escena->addItem(enemigo);
+        } else if (scene() == nuevaEscena) {
+            Enemigo2 *enemigo2 = new Enemigo2();
+            nuevaEscena->addItem(enemigo2);
+        }
+        incrementarNumEnemigos();
+
 
 }
 
@@ -121,12 +131,27 @@ void Game::cambiarEscena()
 
     // Agregar el jugador a la nueva escena
     nuevaEscena->addItem(player1);
+    //creamos una plataforma
+    //plataforma = new Plataforma();
+    // Agregar la vida existente a la nueva escena
+    vida = new Vida();
+    //acomodamos nuestro corazon en la escena
+    vida->setPos(x() + 5, y()+5);
 
-    // Ajustar la posición del jugador en la nueva escena si es necesario
-   // player->setPos(100, 720 - 130);
+    //añadimos la plataforma a nuestra escena y las vidas
+    // escena->addItem(plataforma);
+    nuevaEscena->addItem(vida);
 
+
+    //creamos la vista
+    //QGraphicsView *view = new QGraphicsView(escena);
+    //spawm enemigos como quiero que los enemigos aparezcan en un rango limite de 2 min y que en esos 2 minutos su aparicion sea random
+    // Continuar usando el mismo temporizador para generar enemigos
+    disconnect(timer, &QTimer::timeout, this, &Game::generarEnemigos);
+    connect(timer, &QTimer::timeout, this, &Game::generarEnemigos);
+    timer->start(2000);
 
 
     // Mostrar la nueva escena
-   // show();
+   //show();
 }

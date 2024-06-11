@@ -1,4 +1,5 @@
-#include "enemigo.h"
+#include "enemigo2.h"
+
 #include<QTimer>
 #include<QDebug>
 #include "game.h"
@@ -7,7 +8,7 @@
 
 extern Game * game;
 
-Enemigo::Enemigo(QObject *parent)
+Enemigo2::Enemigo2(QObject *parent)
     :  QObject{parent}, Personaje()
 {
     //acomodamos la vida del enemigo
@@ -15,16 +16,16 @@ Enemigo::Enemigo(QObject *parent)
 
     //hacemos que el enemigo aparezca posicionado por la derecha y se mueva hacia la izquierda
 
-    setPos(1280,720-130);
+    setPos(1280,720-90);
 
     //CREAMOS EL DISEÑO DE EL ENEMIGO
 
-    setPixmap(QPixmap(":/imagenes/SPRITE/1enemigos.png").transformed(QTransform().scale(-1,1)).scaled(100,100,Qt::KeepAspectRatio));
+    setPixmap(QPixmap(":/imagenes/SPRITE/enemigos2.png").transformed(QTransform().scale(-1,1)).scaled(100,100,Qt::KeepAspectRatio));
 
 
     //cargamos el sonido de la bala
 
-  /*  sonidoDisparo = new QSoundEffect();
+    /*  sonidoDisparo = new QSoundEffect();
     sonidoDisparo->setSource(QUrl("qrc:/sonidos/sonido2Acortado.wav"));*/
 
 
@@ -34,7 +35,7 @@ Enemigo::Enemigo(QObject *parent)
     connect(timer,SIGNAL(timeout()),this,SLOT(move()));
 
     //iniciamos el temporizador
-    timer->start(40);
+    timer->start(50);
 
     //ahora quiero que los enemigos disparen de forma aleatoria , en un intervalo de 10 segundos
 
@@ -49,19 +50,19 @@ Enemigo::Enemigo(QObject *parent)
 //ahora quiero que los enemigos comienzen caminando y que de la nada empiecen  a correr
 
 
-void Enemigo::move()
+void Enemigo2::move()
 {
     // Generamos un número aleatorio entre 0 y 1
     int decision = QRandomGenerator::global()->bounded(2);
-   // qDebug() <<decision;
+    // qDebug() <<decision;
 
     // Movemos al enemigo
     if (decision == 0) {
         // Si decision es 0, el enemigo camina
-        setPos(x() - 2, 720 - 130);
+        setPos(x() - 2, 720 - 280);
     } else {
         // Si decision es 1, el enemigo corre
-        setPos(x() - 10, 720 - 130);
+        setPos(x() - 10, 720 - 280);
     }
 
 
@@ -69,7 +70,7 @@ void Enemigo::move()
 
 }
 
-void Enemigo::disparar()
+void Enemigo2::disparar()
 {
     //llamamos al constructor de bala para generar la bala
     Bala *bala = new Bala(false);
@@ -83,10 +84,10 @@ void Enemigo::disparar()
     //this->sonidoDisparo->play();
 }
 
-void Enemigo::recibirDisparo()
+void Enemigo2::recibirDisparo()
 {
     // Número de veces que el enemigo parpadeará
-    static int parpadeosRestantes = 3;
+    static int parpadeosRestantes = 4;
 
     // Si aún hay parpadeos por hacer
     if (parpadeosRestantes > 0) {
@@ -95,7 +96,7 @@ void Enemigo::recibirDisparo()
 
         // Usamos un temporizador para restaurar la imagen original después de 200 milisegundos
         QTimer::singleShot(25, [this]() {
-            setPixmap(QPixmap(":/imagenes/SPRITE/1enemigos.png").transformed(QTransform().scale(-1, 1)).scaled(100, 100, Qt::KeepAspectRatio));
+            setPixmap(QPixmap(":/imagenes/SPRITE/enemigos2.png").transformed(QTransform().scale(-1, 1)).scaled(100, 100, Qt::KeepAspectRatio));
 
             // Decrementamos el contador de parpadeos restantes
             parpadeosRestantes--;
@@ -105,10 +106,9 @@ void Enemigo::recibirDisparo()
         });
     } else {
         // Restauramos el contador de parpadeos para futuros disparos
-        parpadeosRestantes = 3;
+        parpadeosRestantes = 4;
     }
 
 
 
 }
-

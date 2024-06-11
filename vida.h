@@ -15,9 +15,10 @@ public:
     int getVidas();
     void setNumVidas(int numVidas);
         //QString getImagen();
+    int numVidas;
     QVector<QString> imagenesVida = {":/imagenes/SPRITE/corazon3SinFondo.png",":/imagenes/SPRITE/corazonSinFondo2.png",":/imagenes/SPRITE/corazonSinFondo.png"} ;
 private:
-    int numVidas;
+
 
 
 signals:
