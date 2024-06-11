@@ -55,9 +55,9 @@ Game::Game(QWidget *parent)
     //creamos el obstaculo que en este caso va a ser la piedra
     piedra = new Piedra();
     //acomodamos nuestra piedra en la escena
-    piedra->setPos(150,720-120);
+    piedra->setPos(150,720-130);
     escena->addItem(piedra);
-    //creamos la vista|
+    //creamos la vista
 
     //QGraphicsView *view = new QGraphicsView(escena);
 

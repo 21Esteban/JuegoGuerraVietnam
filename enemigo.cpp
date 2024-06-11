@@ -19,7 +19,7 @@ Enemigo::Enemigo(QObject *parent)
 
     //CREAMOS EL DISEÑO DE EL ENEMIGO
 
-    setPixmap(QPixmap(":/imagenes/movimiento1SinFondo.png").transformed(QTransform().scale(-1,1)).scaled(100,100,Qt::KeepAspectRatio));
+    setPixmap(QPixmap(":/imagenes/1enemigos.png").transformed(QTransform().scale(-1,1)).scaled(100,100,Qt::KeepAspectRatio));
 
 
     //cargamos el sonido de la bala
@@ -53,7 +53,7 @@ void Enemigo::move()
 {
     // Generamos un número aleatorio entre 0 y 1
     int decision = QRandomGenerator::global()->bounded(2);
-    qDebug() <<decision;
+   // qDebug() <<decision;
 
     // Movemos al enemigo
     if (decision == 0) {
@@ -95,7 +95,7 @@ void Enemigo::recibirDisparo()
 
         // Usamos un temporizador para restaurar la imagen original después de 200 milisegundos
         QTimer::singleShot(25, [this]() {
-            setPixmap(QPixmap(":/imagenes/movimiento1SinFondo.png").transformed(QTransform().scale(-1, 1)).scaled(100, 100, Qt::KeepAspectRatio));
+            setPixmap(QPixmap(":/imagenes/1enemigos.png").transformed(QTransform().scale(-1, 1)).scaled(100, 100, Qt::KeepAspectRatio));
 
             // Decrementamos el contador de parpadeos restantes
             parpadeosRestantes--;
