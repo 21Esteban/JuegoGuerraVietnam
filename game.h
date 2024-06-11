@@ -9,11 +9,12 @@
 #include "vida.h"
 #include <QTimer>
 #include <QRandomGenerator>
+#include "fondomovido.h"
 
 class Game : public QGraphicsView
 {
 public:
-    explicit Game(QWidget *parent = nullptr);
+    explicit Game(QWidget *parent = 0);
 
     QGraphicsScene * escena;
     Player * player;
@@ -29,7 +30,7 @@ public:
 private:
 
     int enemigosSpawneados;
-
+    FondoMovido *fondoMovido;
 
 
 signals:

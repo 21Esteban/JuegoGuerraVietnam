@@ -26,6 +26,7 @@ private:
     qreal jumpVelocity;
     qreal jumpHeight;
     qreal currentJumpHeight;
+    qreal gravity;
 
     QSoundEffect * sonidoDisparo;
     QTimer *temporizadorAux;

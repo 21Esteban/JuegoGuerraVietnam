@@ -15,7 +15,7 @@ Player::Player(QObject *parent)
     // Inicialización de variables para el salto
     isJumping = false;
     jumpVelocity = -10.0; // Velocidad inicial del salto (ajústalo según sea necesario)
-    jumpHeight = 100.0;   // Altura máxima del salto (ajústalo según sea necesario)
+    jumpHeight = 200.0;   // Altura máxima del salto (ajústalo según sea necesario)
     currentJumpHeight = 0.0;
     //agreagamos las animaciones a un arreglo que contiene las rutas de las imagenes que compondran nuestra animacion
     this->animaciones.push_back(animacionPath1);
@@ -48,6 +48,9 @@ void Player::keyPressEvent(QKeyEvent *event)
     }else if(event->key() == Qt::Key_Left || event->key() == Qt::Key_A){
         if(pos().x()>0){
             setPos(x()-10,y());
+            this->frame = (this->frame + 1) % 3; // Esto hará que el frame se reinicie a 0 después de alcanzar 2
+
+            setPixmap(QPixmap(this->animaciones[frame]).transformed(QTransform().scale(-1,1)).scaled(100,100,Qt::KeepAspectRatio));
         }
 
     }
@@ -130,15 +133,15 @@ void Player::jump()
         }
     } else {
         // Simular la caída del personaje
-        qreal newY = y() + 2.0; // Velocidad de caída (ajusta según sea necesario)
-        if (newY <= scene()->height() - boundingRect().height()) { // Evitar que el personaje caiga fuera de la pantalla por abajo
-            setY(newY);
+        qreal newY = y() + 2.5; // Velocidad de caída (ajusta según sea necesario)
+        if (newY <= scene()->height() - boundingRect().height()-30) { // Evitar que el personaje caiga fuera de la pantalla por abajo
+            setY(newY);;
             QTimer::singleShot(20, this, &Player::jump); // Llama recursivamente para simular la caída
         } else {
-            setY(scene()->height() - boundingRect().height());
+            setY(scene()->height() - boundingRect().height()-30);
             currentJumpHeight = 0.0;
             isJumping = false;
+            return;
         }
     }
 }
-

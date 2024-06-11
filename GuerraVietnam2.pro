@@ -13,6 +13,7 @@ CONFIG += c++17
 SOURCES += \
     bala.cpp \
     enemigo.cpp \
+    fondomovido.cpp \
     game.cpp \
     main.cpp \
     personaje.cpp \
@@ -24,6 +25,7 @@ SOURCES += \
 HEADERS += \
     bala.h \
     enemigo.h \
+    fondomovido.h \
     game.h \
     personaje.h \
     plataforma.h \
