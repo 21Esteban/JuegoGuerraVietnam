@@ -13,7 +13,8 @@ public:
     explicit Vida(QObject *parent = nullptr);
     void decrease();
     int getVidas();
-    //QString getImagen();
+    void setNumVidas(int numVidas);
+        //QString getImagen();
     QVector<QString> imagenesVida = {":/imagenes/corazon3SinFondo.png",":/imagenes/corazonSinFondo2.png",":/imagenes/corazonSinFondo.png"} ;
 private:
     int numVidas;

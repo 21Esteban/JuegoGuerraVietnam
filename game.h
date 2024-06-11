@@ -21,6 +21,7 @@ public:
     Plataforma *plataforma;
     Vida * vida;
     QTimer * timer;
+    Vida * enemigo;
 
 
     void incrementarNumEnemigos();
@@ -30,7 +31,7 @@ public:
 private:
 
     int enemigosSpawneados;
-    FondoMovido *fondoMovido;
+    //FondoMovido *fondoMovido;
 
 
 signals:

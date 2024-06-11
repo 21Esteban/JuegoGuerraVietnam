@@ -10,7 +10,7 @@ Game::Game(QWidget *parent)
 
     //acomodamos el centrado de la escena
      escena->setSceneRect(0,0,1280,720);
-     //setBackgroundBrush(QBrush(QImage(":/imagenes/fondo2.jpg").scaled(1280, 720)));
+     setBackgroundBrush(QBrush(QImage(":/imagenes/fondo2.jpg").scaled(1280, 720)));
 
      setScene(escena);
 
@@ -19,9 +19,9 @@ Game::Game(QWidget *parent)
     setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     //establecemos el tamaño de la vista
     setFixedSize(1280,720);
-    fondoMovido = new FondoMovido(":/imagenes/fondo2.jpg", ":/imagenes/fondo2.jpg"); // Usamos la misma imagen 2 veces
-    escena->addItem(fondoMovido);
-    fondoMovido->startMoving();
+   // fondoMovido = new FondoMovido(":/imagenes/fondo2.jpg", ":/imagenes/fondo2.jpg"); // Usamos la misma imagen 2 veces
+   // escena->addItem(fondoMovido);
+   // fondoMovido->startMoving();
 
 
     //creamos nuestroPersonaje principal
